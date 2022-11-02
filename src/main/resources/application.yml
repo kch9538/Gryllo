@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://gryllo-db.ce7keqboroho.ap-northeast-2.rds.amazonaws.com:3306/gryllo
-    username: grylloadmin
-    password: gryllo1234
+    url: AWS RDS
+    username: AWS RDS
+    password: AWS RDS
 
   jpa:
     hibernate:
@@ -16,8 +16,8 @@ spring:
     mail:
       host: smtp.gmail.com
       port: 587
-      username: smashi195@gmail.com
-      password: hhvjygaesrixqbym
+      username: email
+      password: key
       properties:
         mail:
           smtp:
