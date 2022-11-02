@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://gryllo-db.ce7keqboroho.ap-northeast-2.rds.amazonaws.com:3306/gryllo
+    username: grylloadmin
+    password: gryllo1234
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: smashi195@gmail.com
+      password: hhvjygaesrixqbym
+      properties:
+        mail:
+          smtp:
+            starttls:
+              enable: true
