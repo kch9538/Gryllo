@@ -5,6 +5,7 @@ import lombok.ToString;
 
 
 
+
 @ToString
 @Data
 public class MemberInput {
