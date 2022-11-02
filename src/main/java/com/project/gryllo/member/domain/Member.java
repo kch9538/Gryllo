@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "member")
 public class Member implements MemberCode{
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String userId;

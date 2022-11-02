@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component;
 public class MailComponents {
 	private final JavaMailSender javaMailSender;
 
-	public boolean sendMail(String mail, String subject, String text){
+	public boolean
+	sendMail(String mail, String subject, String text){
 		boolean result = false;
 		MimeMessagePreparator msg= new MimeMessagePreparator() {
 			@Override

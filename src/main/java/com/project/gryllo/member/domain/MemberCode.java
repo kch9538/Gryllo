@@ -11,6 +11,7 @@ public interface MemberCode {
     String MEMBER_STATUS_STOP = "STOP";
 
 
+
     String MEMBER_STATUS_WITHDRAW = "WITHDRAW";
     
     
