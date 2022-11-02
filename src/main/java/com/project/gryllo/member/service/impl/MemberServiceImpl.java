@@ -78,6 +78,7 @@ public class MemberServiceImpl implements MemberService {
 		return true;
 	}
 
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Member> optionalMember = memberRepository.findById(username);
