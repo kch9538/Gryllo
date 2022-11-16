@@ -1,0 +1,252 @@
+.main-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  border: var(--main-border);
+  background-color: white;
+  z-index: 99;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 950px;
+  width: 100vw;
+  padding: 14px 17px 14px 17px;
+}
+
+.header-title {
+  font-family: var(--title-font);
+  font-size: 30px;
+  flex-basis: 300px;
+}
+
+.header-search {
+  position: relative;
+  color: #909090;
+}
+
+.header-search__input {
+  opacity: 0.7;
+}
+
+.header-search__input {
+  width: 267px;
+  height: 35px;
+  padding-left: 40px;
+  font-size: 16px;
+  background-color: #e6e6e6;
+  border: none;
+  border-radius: 8px;
+}
+
+.header-search__input:focus {
+  outline: none;
+}
+
+.search-result-wrap {
+  position: absolute;
+  top: 50px;
+  left: -56.5px;
+  display: none;
+}
+
+.search-result__triangle {
+  transform: rotate(45deg);
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  position: absolute;
+  top: -9.5px;
+  left: 180px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.search-result {
+  width: 380px;
+  height: 360px;
+  background-color: white;
+  position: absolute;
+  opacity: 1;
+  z-index: 2;
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top: none;
+  padding-top: 10px;
+  overflow-y: scroll;
+}
+
+.search-result__profile {
+  display: flex;
+  align-items: center;
+  height: 61px;
+  padding: 8px 17px;
+  cursor: pointer;
+}
+
+.search-result__profile:hover {
+  background-color: rgb(253, 250, 250);
+}
+
+.search-result__profile-photo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 14px;
+}
+
+.search-result__profile-names {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.search-result__profile-nickname {
+  margin-bottom: 8px;
+  color: black;
+}
+.header-search .fa-search {
+  position: absolute;
+  left: 15px;
+  top: 9px;
+}
+
+.header-nav {
+  display: flex;
+}
+
+.nav-icon-wrap {
+  margin-left: 24px;
+}
+.nav-icon {
+  font-size: 25px;
+}
+
+.go-home:visited,
+.go-chat:visited,
+.go-adventure:visited {
+  color: black;
+}
+
+.show-add-post:hover,
+.show-alarm:hover,
+.show-user-info:hover {
+  cursor: pointer;
+}
+
+/* header 영역 끝 */
+/* main content 영역 시작 */
+.main-content {
+  margin-top: 90px;
+}
+
+.main-post {
+  width: 600px;
+  margin-bottom: 27px;
+}
+
+.main-post-header,
+.main-post-media-wrap,
+.main-post-contents {
+  width: 600px;
+}
+
+.main-post-images-wrap {
+  width: 600px;
+  /* 추후 조정 필요 */
+  height: 500px;
+}
+
+.main-post-profile__name,
+.main-post-profile__more {
+  opacity: 0.7;
+}
+
+.main-post-image {
+  width: 600px;
+  /* 추후 조정 필요 */
+  height: 500px;
+}
+
+.main-post-contents {
+  min-height: 216px;
+  padding-bottom: 54px;
+}
+
+.main-post-explanation {
+  margin-bottom: 9px;
+  line-height: 1.6;
+}
+
+.main-post-explanation__owner {
+  font-weight: bold;
+}
+
+.main-post-comments-count,
+.post-time-wrap{
+  margin-bottom: 12px;
+}
+
+.main-post-comment__text {
+  width: 485px;
+}
+/* main content 영역 끝 */
+
+.main-post-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 27px;
+}
+
+.main-post-more {
+  width: 100px;
+  height: 50px;
+  background-color: white;
+  border: var(--main-border);
+  border-radius: 5px;
+}
+
+.main-post-more:active {
+  opacity: 0.7;
+}
+
+/* option box 시작 */
+.option-box-body__buttons {
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.option-box-body__delete, 
+.option-box-body__modify,
+.option-box-body__cancel {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #575757;
+  cursor: pointer;
+}
+
+.option-box-body__delete {
+  color: #de3131;
+}
+
+.option-box-body__modify {
+  border-top: var(--main-border);
+  border-bottom: var(--main-border);
+}
+
+/* option box 끝 */

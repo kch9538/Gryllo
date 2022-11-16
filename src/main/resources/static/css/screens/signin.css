@@ -1,0 +1,38 @@
+.signin-header {
+  margin-bottom: 35px;
+}
+
+.signin__etc {
+  color: #385185;
+}
+
+.singin-facebook-login img {
+  width: 17px;
+  height: 17px;
+}
+
+.singin-facebook-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 29px;
+  margin-bottom: 23px;
+}
+
+.singin-facebook-login__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 170px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.singin-facebook-login__link:visited,
+.singin-forget-password a:visited {
+  color: #385185;
+}
+
+.singin-forget-password {
+  font-size: 12px;
+  font-weight: bold;
+}
