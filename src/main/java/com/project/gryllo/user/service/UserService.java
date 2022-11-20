@@ -6,6 +6,10 @@ import com.project.gryllo.auth.LoginUserAnnotation;
 import com.project.gryllo.exception.ex.MyPasswordCheckException;
 import com.project.gryllo.exception.ex.MyUserIdNotFoundException;
 import com.project.gryllo.exception.ex.MyUserInfoExistException;
+import com.project.gryllo.post.entity.Comment;
+import com.project.gryllo.post.entity.Image;
+import com.project.gryllo.post.entity.Likes;
+import com.project.gryllo.post.repository.UserBoardRepository;
 import com.project.gryllo.user.dto.JoinReqDto;
 import com.project.gryllo.user.dto.UserProfileImageRespDto;
 import com.project.gryllo.user.dto.UserProfileRespDto;
@@ -42,6 +46,7 @@ public class UserService {
 	private final FollowRepository followRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	private final UserBoardRepository userboardRepository;
 
 	@Value("${file.path}")
 	private String uploadFolder;
@@ -93,7 +98,7 @@ public class UserService {
 
 		String username = joinReqDto.getUsername();
 
-		System.out.println("비밀번호 변경 서비스 진입");
+		System.out.println("비밀번호 변경");
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		User user = userDetail(loginUser);
@@ -104,7 +109,7 @@ public class UserService {
 		if (passwordCK == true) {
 
 			if (newPassword.equals(newRePassword)) {
-				System.out.println("변경 할 비밀번호 일치!");
+				System.out.println("변경 할 비밀번호 일치");
 
 				joinReqDto.setPassword(newPassword.toString());
 
@@ -116,12 +121,12 @@ public class UserService {
 				joinReqDto.setPassword(newPassword.toString());
 				System.out.println("암호화 후 비밀번호  : " + joinReqDto.getPassword());
 				userRepository.modifyPassword(username, newPassword.toString());
-				System.out.println("비밀번호 변경 완료!!");
+				System.out.println("비밀번호 변경 완료");
 			}
 
 		} else {
 			System.out.println("oldPassword and DBpassword matches: " + passwordCK);
-			System.out.println("비밀번호 변경 실패!!");
+			System.out.println("비밀번호 변경 실패");
 			throw new MyPasswordCheckException("현재 비밀번호를 확인해주세요.");
 		}
 
@@ -143,11 +148,11 @@ public class UserService {
 		System.out.println("서비스 회원가입 들어옴");
 		System.out.println(joinReqDto);
 
-		List<User> DuplicateCheckList = userRepository.중복체크(joinReqDto.getEmail(),
+		List<User> DuplicateCheckList = userRepository.existCheck(joinReqDto.getEmail(),
 			joinReqDto.getUsername());
 		System.out.println(DuplicateCheckList.size());
 		if (!(DuplicateCheckList.isEmpty())) {
-			System.out.println("중복 이메일 또는 아이디가 있습니다.");
+			System.out.println("중복 이메일 또는 아이디");
 			throw new MyUserInfoExistException("이미 존재하는 Email 또는 사용자 이름 입니다.");
 		} else {
 			String encPassword = bCryptPasswordEncoder.encode(joinReqDto.getPassword());
@@ -157,7 +162,26 @@ public class UserService {
 		}
 	}
 
+	@Transactional
+	public List<Image> oneUserPost(int BoardUserid, int loginUserId) {
+		List<Image> boards = null;
+		boards = userboardRepository.mUserBoard(BoardUserid);
+		for (Image board : boards) {
+			board.setLikeCount(board.getLikes().size());
 
+			for (Likes like : board.getLikes()) {
+				if (like.getUser().getId() == loginUserId) {
+					board.setLikeState(true);
+				}
+			}
+			for (Comment comment : board.getComments()) {
+				if (comment.getUser().getId() == loginUserId) {
+					comment.setCommentHost(true);
+				}
+			}
+		}
+		return boards;
+	}
 	@Transactional(readOnly = true)
 	public UserProfileRespDto userProfile(int id, LoginUser loginUser) {
 
@@ -185,14 +209,12 @@ public class UserService {
 
 		imageCount = imagesEntity.size();
 
-		// 2. 팔로우 수
+
 		followerCount = followRepository.mCountByFollower(id);
 		followingCount = followRepository.mCountByFollowing(id);
 
-		// 3. 팔로우 유무
 		followState = followRepository.mFollowState(loginUser.getId(), id) == 1 ? true : false;
 
-		// 4. 최종마무리
 		UserProfileRespDto userProfileRespDto = UserProfileRespDto.builder()
 			.pageHost(id == loginUser.getId())
 			.followState(followState).followerCount(followerCount).followingCount(followingCount)
@@ -201,4 +223,28 @@ public class UserService {
 
 		return userProfileRespDto;
 	}
+	@Transactional(readOnly = true)
+	public List<User> recommendedUser(int loginUserId) {
+		return userRepository.mRecommendationImage(loginUserId);
+	}
+
+	// DM 전체 회원
+	@Transactional(readOnly = true)
+	public List<User> allUsers(int loginUserId) {
+		return userRepository.mAllUserList(loginUserId);
+	}
+
+	// DM 특정 회원
+	@Transactional(readOnly = true)
+	public List<User> dmUser(String username, int id) {
+		username = "%" + username + "%";
+		return userRepository.mSearchUserList(username, id);
+	}
+
+	// DM 특정 회원 불러오기
+	@Transactional(readOnly = true)
+	public User selectUser(int selectedUserId) {
+		return userRepository.mSelectedUser(selectedUserId);
+	}
+
 }

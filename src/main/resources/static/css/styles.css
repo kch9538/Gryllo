@@ -1,31 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600");
 @import "reset.css";
-@import "variables.css";
-@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Roboto&display=swap");
-
-/* components */
-@import "components/signInSignUp.css";
-@import "components/modal.css";
-@import "components/slideImage.css";
-@import "components/post.css";
-@import "components/postModal.css";
-
-/* screens */
-@import "screens/main.css";
-@import "screens/signIn.css";
-@import "screens/signUp.css";
-@import "screens/addPost.css";
-@import "screens/comment.css";
-@import "screens/error.css";
-
-body {
-  font-family: var(--general-font);
-  background-color: var(--main-bg-color);
-}
-
-a {
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
+@import "globals.css";
+@import "login.css";
+@import "navigation.css";
+@import "explore.css";
+@import "feed.css";
+@import "profile.css";
+@import "edit-profile.css";
+@import "modal.css";
+@import "side.css";
+@import "pwChange.css"; /* @import "board.css"; */

@@ -2,7 +2,7 @@ package com.project.gryllo.notification.service;
 
 
 import com.project.gryllo.notification.entity.Noti;
-import com.project.gryllo.notification.entity.NotiRepository;
+import com.project.gryllo.notification.repository.NotiRepository;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

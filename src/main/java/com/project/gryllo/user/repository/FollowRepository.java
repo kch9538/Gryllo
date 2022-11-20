@@ -10,20 +10,20 @@ public interface FollowRepository extends JpaRepository<Follow, Integer> {
 
 	List<Follow> findByfromUserId(int loginUserId);
 
-	@Query(value = "SELECT count(*) FROM Follow WHERE toUserId = ?1", nativeQuery = true)
+	@Query(value = "SELECT count(*) FROM follow WHERE toUserId = ?1", nativeQuery = true)
 	int mCountByFollower(int toUserId);
 
-	@Query(value = "SELECT count(*) FROM Follow WHERE fromUserId = ?1", nativeQuery = true)
+	@Query(value = "SELECT count(*) FROM follow WHERE fromUserId = ?1", nativeQuery = true)
 	int mCountByFollowing(int fromUserId);
 
-	@Query(value = "SELECT count(*) FROM Follow WHERE fromUserId = ?1 AND toUserId = ?2", nativeQuery = true)
+	@Query(value = "SELECT count(*) FROM follow WHERE fromUserId = ?1 AND toUserId = ?2", nativeQuery = true)
 	int mFollowState(int loginUserId, int pageUserId);
 
 	@Modifying
-	@Query(value = "INSERT INTO Follow(fromUserId, toUserId) VALUES(?1, ?2)", nativeQuery = true)
+	@Query(value = "INSERT INTO follow(fromUserId, toUserId) VALUES(?1, ?2)", nativeQuery = true)
 	int mFollow(int loginUserId, int pageUserId);
 
 	@Modifying
-	@Query(value = "DELETE FROM Follow WHERE fromUserId = ?1 AND toUserId = ?2", nativeQuery = true)
+	@Query(value = "DELETE FROM follow WHERE fromUserId = ?1 AND toUserId = ?2", nativeQuery = true)
 	int mUnFollow(int loginUserId, int pageUserId);
 }

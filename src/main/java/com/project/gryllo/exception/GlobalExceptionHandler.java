@@ -36,19 +36,19 @@ public class GlobalExceptionHandler {
 		return Script.alert(e.getMessage());
 	}
 
-	// LKH 회원가입 중복체크 에러 핸들러
+	// 회원가입 중복체크 에러 핸들러
 	@ExceptionHandler(value = MyUserInfoExistException.class)
 	public String MyUserInfoExistException(Exception e) {
 		return Script.back(e.getMessage());
 	}
 
-	// LKH 게시물 삭제 시도시 작성자가 아니면 삭제할수 없음.
+	// 게시물 삭제 시도시 작성자가 아니면 삭제할수 없음.
 	@ExceptionHandler(value = MyImageDeleteException.class)
 	public String MyImageDeleteException(Exception e) {
 		return (e.getMessage());
 	}
 
-	// 현재 비밀번호를 확인하기 위한 예외
+	// 현재 비밀번호를 확인
 	@ExceptionHandler(value = MyPasswordCheckException.class)
 	public String MyPasswordCheckException(Exception e) {
 		return Script.back(e.getMessage());

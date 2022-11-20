@@ -1,8 +1,8 @@
 package com.project.gryllo.user.service;
 
 
-import com.project.gryllo.notification.entity.NotiRepository;
-import com.project.gryllo.notification.repository.NotiType;
+import com.project.gryllo.notification.repository.NotiRepository;
+import com.project.gryllo.notification.entity.NotiType;
 import com.project.gryllo.user.dto.FollowRespDto;
 import com.project.gryllo.user.repository.FollowRepository;
 import java.util.List;

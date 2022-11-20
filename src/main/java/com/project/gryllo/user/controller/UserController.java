@@ -4,14 +4,20 @@ package com.project.gryllo.user.controller;
 import com.project.gryllo.auth.LoginUser;
 import com.project.gryllo.auth.LoginUserAnnotation;
 import com.project.gryllo.notification.service.NotiService;
+import com.project.gryllo.post.entity.Image;
+import com.project.gryllo.post.entity.Message;
 import com.project.gryllo.user.dto.UserProfileRespDto;
 import com.project.gryllo.user.entity.User;
 import com.project.gryllo.user.service.FollowService;
 import com.project.gryllo.user.service.UserService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +47,8 @@ public class UserController {
 		model.addAttribute("followerList", followService.followerList(loginUser.getId(), pageUserId));
 		model.addAttribute("notis", notiService.notiList(loginUser.getId()));
 
-
+		List<Image> UserBoard = userService.oneUserPost(pageUserId, loginUser.getId());
+		model.addAttribute("board", UserBoard);
 		return "user/profile";
 	}
 
@@ -80,7 +87,13 @@ public class UserController {
 
 		return "redirect:/user/" + userId;
 	}
-
+	@MessageMapping("/topic/user/{userid}")
+	@SendTo("/topic/user/{userid}")
+	public Message sendToUser(@DestinationVariable String userid, Message message) {
+		System.out.println(message.toString());
+		Message msg = new Message(message.getId(), message.getMessage());
+		return msg;
+	}
 
 
 }

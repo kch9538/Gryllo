@@ -24,13 +24,13 @@ public class AuthController {
 
 	@GetMapping("/auth/loginForm")
 	public String loginForm() {
-		log.info("/auth/loginForm 진입");
+		log.info("/auth/loginForm");
 		return "auth/loginForm";
 	}
 
 	@GetMapping("/auth/joinForm")
 	public String joinForm() {
-		log.info("/auth/joinForm 진입");
+		log.info("/auth/joinForm");
 		return "auth/joinForm";
 	}
 
@@ -45,7 +45,7 @@ public class AuthController {
 	// 비밀번호 변경
 	@GetMapping("/auth/pwChange")
 	public void pwChange(String oldPassword, boolean passwordCK, @LoginUserAnnotation LoginUser loginUser, Model model) {
-		log.info("/auth/pwChange 진입 ");
+		log.info("/auth/pwChange");
 		User userEntity = userService.userDetail(loginUser);
 		model.addAttribute("user", userEntity);
 
@@ -56,7 +56,7 @@ public class AuthController {
 	public String pwChange(@LoginUserAnnotation LoginUser loginUser, CharSequence oldPassword, CharSequence newPassword,
 			CharSequence newRePassword, boolean passwordCK, JoinReqDto joinReqDto, HttpSession session, Model model) {
 		String result = null;
-		log.info("비밀번호 변경 요청 발생!!", joinReqDto.toString());
+		log.info("비밀번호 변경 요청", joinReqDto.toString());
 
 		userService.pwChange(loginUser, oldPassword, newPassword, newRePassword, passwordCK, joinReqDto);
 
