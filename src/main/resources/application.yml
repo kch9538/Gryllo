@@ -1,37 +1,37 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://gryllo-db.ce7keqboroho.ap-northeast-2.rds.amazonaws.com:3306/gryllo
+    url: jdbc:mysql://gryllo-db.ce7keqboroho.ap-northeast-2.rds.amazonaws.com:3306/gryllo?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: grylloadmin
     password: gryllo1234
+  mustache:
+    expose-session-attributes: true
+  security:
+    user:
+      name: admin
+      password: 1234
 
   jpa:
+    open-in-view: true
     hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-        format_sql: true
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
     show-sql: true
 
-  redis:
-    host: localhost
-    port: 6379
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
 
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: smashi195@gmail.com
-    password: hhvjygaesrixqbym
-    properties:
-      mail:
-        smtp:
-          starttls:
-            enable: true
-oauth:
-  client:
-    github:
-      client-id: 351b2f98976bb17541a0
-      client-secret: 1d9843e7542043086f9e27b4accdc86d699e70e1
-      token-url: https://github.com/login/oauth/access_token
-      user-info-url: https://api.github.com/user
-      user-email-url: https://api.github.com/user/emails
+file:
+  path: /Users/samkim/Desktop/project/Gryllo/src/main/resources/upload/
